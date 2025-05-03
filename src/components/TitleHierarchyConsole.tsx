@@ -1,68 +1,98 @@
 // components/TitleHierarchyConsole.tsx
-"use client";
+
 import { useState } from "react";
 
 export default function TitleHierarchyConsole() {
-  const [h1Text, setH1Text] = useState("");
-  const [h1FontSize, setH1FontSize] = useState("2rem");
-  const [gradient, setGradient] = useState("from-blue-500 to-indigo-500");
+  const [formData, setFormData] = useState({
+    h2Text: "",
+    h3Text: "",
+    h4Text: "",
+    h5Text: "",
+    h6Text: "",
+    textGradient: "from-indigo-400 via-purple-500 to-pink-500",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleGradientChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setGradient(e.target.value);
+    setFormData((prev) => ({ ...prev, textGradient: e.target.value }));
   };
 
   return (
-    <div className="space-y-6">
-      {/* H1 Heading */}
+    <form className="space-y-8">
+      {/* H2 Input */}
       <div>
-        <label htmlFor="h1Text" className="block text-lg font-semibold text-white">H1 Text</label>
+        <label htmlFor="h2Text" className="block text-lg font-semibold text-white">H2 Text</label>
         <input
           type="text"
-          id="h1Text"
-          value={h1Text}
-          onChange={(e) => setH1Text(e.target.value)}
-          className="w-full p-3 mt-2 rounded-md bg-transparent border-2 border-white focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
-          placeholder="Enter H1 text"
+          id="h2Text"
+          name="h2Text"
+          value={formData.h2Text}
+          onChange={handleChange}
+          className="mt-2 w-full p-3 rounded-md bg-transparent border-2 border-white focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400"
+          placeholder="Enter H2 text"
         />
-      </div>
-
-      <div>
-        <label htmlFor="h1FontSize" className="block text-lg font-semibold text-white">H1 Font Size</label>
-        <input
-          type="range"
-          id="h1FontSize"
-          min="1"
-          max="5"
-          step="0.1"
-          value={parseFloat(h1FontSize)}
-          onChange={(e) => setH1FontSize(`${e.target.value}rem`)}
-          className="w-full"
-        />
-        <div className="mt-2 text-white text-sm">Preview: <span style={{ fontSize: h1FontSize }} className={`bg-gradient-to-r ${gradient} text-transparent bg-clip-text`}>{h1Text}</span></div>
-      </div>
-
-      {/* Gradient Customization */}
-      <div>
-        <label htmlFor="gradient" className="block text-lg font-semibold text-white">Gradient Colors</label>
-        <input
-          type="text"
-          id="gradient"
-          value={gradient}
-          onChange={handleGradientChange}
-          className="w-full p-3 mt-2 rounded-md bg-transparent border-2 border-white focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
-          placeholder="Enter gradient (e.g. 'from-blue-500 to-indigo-500')"
-        />
-      </div>
-
-      {/* Cosmic Particle Effect on Hover */}
-      <div className="mt-6">
-        <h3 className="text-lg text-white mb-2">Cosmic Particle Effect on Heading Hover</h3>
-        <h1
-          className={`text-4xl font-bold hover:text-transparent hover:bg-clip-text bg-gradient-to-r ${gradient} hover:animate-pulse transition duration-500`}
+        <div
+          className={`mt-2 text-xl font-bold ${formData.textGradient} hover:text-transparent hover:bg-clip-text`}
         >
-          {h1Text}
-        </h1>
+          {formData.h2Text}
+        </div>
       </div>
-    </div>
+
+      {/* H3 Input */}
+      <div>
+        <label htmlFor="h3Text" className="block text-lg font-semibold text-white">H3 Text</label>
+        <input
+          type="text"
+          id="h3Text"
+          name="h3Text"
+          value={formData.h3Text}
+          onChange={handleChange}
+          className="mt-2 w-full p-3 rounded-md bg-transparent border-2 border-white focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400"
+          placeholder="Enter H3 text"
+        />
+        <div
+          className={`mt-2 text-xl font-bold ${formData.textGradient} hover:text-transparent hover:bg-clip-text`}
+        >
+          {formData.h3Text}
+        </div>
+      </div>
+
+      {/* H4 Input */}
+      <div>
+        <label htmlFor="h4Text" className="block text-lg font-semibold text-white">H4 Text</label>
+        <input
+          type="text"
+          id="h4Text"
+          name="h4Text"
+          value={formData.h4Text}
+          onChange={handleChange}
+          className="mt-2 w-full p-3 rounded-md bg-transparent border-2 border-white focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400"
+          placeholder="Enter H4 text"
+        />
+        <div
+          className={`mt-2 text-xl font-bold ${formData.textGradient} hover:text-transparent hover:bg-clip-text`}
+        >
+          {formData.h4Text}
+        </div>
+      </div>
+
+      {/* Gradient Control */}
+      <div>
+        <label htmlFor="textGradient" className="block text-lg font-semibold text-white">Text Gradient</label>
+        <input
+          type="text"
+          id="textGradient"
+          name="textGradient"
+          value={formData.textGradient}
+          onChange={handleGradientChange}
+          className="mt-2 w-full p-3 rounded-md bg-transparent border-2 border-white focus:ring-2 focus:ring-indigo-500 text-white"
+          placeholder="Enter gradient class (e.g., from-indigo-400 via-purple-500 to-pink-500)"
+        />
+      </div>
+    </form>
   );
 }
