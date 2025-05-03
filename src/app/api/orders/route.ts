@@ -1,24 +1,15 @@
-import { prisma } from "@/lib/prisma";  // Make sure the prisma import path is correct
+// /pages/api/orders.ts
+import { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '@/lib/prisma'; // Assuming you're using Prisma
 
-export async function POST(req: Request) {
-  try {
-    const { customer, product, price, total, status, orderDate, deliveryDate } = await req.json();
-
-    const newOrder = await prisma.order.create({
-      data: {
-        customer,
-        product,  // Make sure this matches the schema and that `product` exists in the Prisma schema
-        price,
-        total,
-        status,
-        orderDate: new Date(orderDate),
-        deliveryDate: new Date(deliveryDate),
-      },
-    });
-
-    return new Response(JSON.stringify(newOrder), { status: 201 });
-  } catch (error) {
-    console.error("Failed to create order:", error);
-    return new Response(JSON.stringify({ error: "Failed to create order" }), { status: 500 });
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    try {
+      // Fetch all orders from the database
+      const orders = await prisma.order.findMany(); 
+      res.status(200).json(orders); // Return orders as JSON
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching orders' });
+    }
   }
 }

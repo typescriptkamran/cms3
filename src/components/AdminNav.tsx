@@ -1,15 +1,17 @@
-// app/admin/layout.tsx
+// AdminNav.tsx
+import React from 'react';
+import Link from 'next/link';
 
-import AdminNav from "@/components/AdminNav";
-
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+const AdminNav = () => {
   return (
-    <div className="flex h-screen">
-      {/* Admin Sidebar (Nav) */}
-      <AdminNav />
-
-      {/* Main Content */}
-      <main className="flex-1 p-8">{children}</main>
-    </div>
+    <nav className="admin-nav">
+      <ul>
+        <li><Link href="/admin/orders">Orders</Link></li>
+        <li><Link href="/admin/products">Products</Link></li>
+        <li><Link href="/admin/settings">Settings</Link></li>
+      </ul>
+    </nav>
   );
-}
+};
+
+export default AdminNav;

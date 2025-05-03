@@ -22,18 +22,18 @@ model Product {
   languageKey   String
 }
 
+// schema.prisma
 model Order {
-  id            String   @id @default(cuid())
-  customer      String
-  product       String  // Ensure this field is defined
-  price         Float
-  total         Float
-  status        String
-  orderDate     DateTime
-  deliveryDate  DateTime
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           Int    @id @default(autoincrement())
+  customer     String
+  product      String
+  price        Float
+  total        Float
+  status       String
+  orderDate    DateTime
+  deliveryDate DateTime
 }
+
 
 
 
