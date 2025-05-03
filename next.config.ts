@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+// next.config.js
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  i18n: require('./next-i18next.config.js').i18n, // Integration with i18next config
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig
