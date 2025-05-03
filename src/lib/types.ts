@@ -15,13 +15,19 @@ export interface Product {
   
 // src/lib/types.ts
 
-export interface Order {
+export type Order = {
   id: number;
   customer: string;
-  product: string; // Make sure 'product' is defined here
+  delivery: string;
+  product: string;
+  currency: string;
   price: number;
-  total: number;
-  status: string;
+  method: string;
+  shop: string;
+  device: string;
   orderDate: string;
   deliveryDate: string;
-}
+  paymentStatus: string;
+  deliveryStatus: string;
+};
+

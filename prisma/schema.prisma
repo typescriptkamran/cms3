@@ -24,15 +24,23 @@ model Product {
 
 // schema.prisma
 model Order {
-  id           Int    @id @default(autoincrement())
-  customer     String
-  product      String
-  price        Float
-  total        Float
-  status       String
-  orderDate    DateTime
-  deliveryDate DateTime
+  id              Int       @id @default(autoincrement())
+  customer        String
+  delivery        String
+  product         String
+  currency        String
+  price           Float
+  method          String
+  shop            String
+  device          String
+  orderDate       DateTime  @default(now())
+  deliveryDate    DateTime
+  paymentStatus   String
+  deliveryStatus  String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
+
 
 
 
