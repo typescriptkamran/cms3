@@ -1,8 +1,7 @@
-// next-i18next.config.js
 module.exports = {
-    i18n: {
-      locales: ['en', 'es'], // Define supported languages
-      defaultLocale: 'en', // Default language
-    },
-  }
-  
+  i18n: {
+    locales: ['en', 'fr', 'de'], // Add supported languages
+    defaultLocale: 'en',
+  },
+};
+// This configuration file is used for internationalization (i18n) in a Next.js application.

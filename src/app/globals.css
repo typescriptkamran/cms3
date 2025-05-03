@@ -12,10 +12,6 @@
   }
 }
 
-@theme {
-  --background: #171717;
-  --foreground: #ffffff;
-}
 
 body {
   background: var(--background);

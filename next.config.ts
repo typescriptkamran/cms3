@@ -1,8 +1,9 @@
-// next.config.js
+// next.config.ts
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  i18n: require('./next-i18next.config.js').i18n, // Integration with i18next config
-}
-
-module.exports = nextConfig
+  i18n: {
+    locales: ['en', 'fr', 'de'],  // Add supported languages
+    defaultLocale: 'en',
+  },
+};
+module.exports = nextConfig;
